@@ -30,14 +30,14 @@ def arithmetic_arranger(problems, show_answers = False):
                         operator = char
                     elif val == 2:
                         num2+=char
-            if (len(num1) > 4 | len(num2) > 4):
-                raise ValueError("Error: Numbers cannot be more than four digits.")
+            if (len(num1) > 4 or len(num2) > 4):
+                return "Error: Numbers cannot be more than four digits."
             elif not num1.isnumeric():
-                raise ValueError("Error: Numbers must only contain digits.")
+                return "Error: Numbers must only contain digits."
             elif not num2.isnumeric():
-                raise ValueError("Error: Numbers must only contain digits.")
+                return "Error: Numbers must only contain digits."
             elif not (operator == '+' or operator == '-'):
-                raise ValueError("Error: Operator must be '+' or '-'.")
+                return "Error: Operator must be '+' or '-'."
             maxdifference = abs(len(num1)-len(num2))
             if operator == '+':
                 solution = int(num1) + int(num2)
@@ -73,17 +73,20 @@ def arithmetic_arranger(problems, show_answers = False):
 
 
     else:
-        ValueError("Error: Too many problems.")
+        return "Error: Too many problems."
     first = ''.join(firstline)
     second = ''.join(secondline)
     third = ''.join(thirdline)
     fourth =  ''.join(fourthline)
     if show_answers:
-        solved = first + '\n' +  second + '\n' +  third + '\n' + fourth
+        solved = first + '\n' +  second + '\n' +  third.rstrip() + '\n' + fourth.rstrip()
         return solved
     else:
-        solved = first + '\n' +  second + '\n' +  third
+        solved = first + '\n' +  second + '\n' +  third.rstrip()
         return solved
 
+print(repr(f'\n{arithmetic_arranger(["3801 - 2", "123 + 49"])}'))
 
-print(arithmetic_arranger(["32 - 698", "3801 - 2", "45 + 43", "123 + 49"], True))
+# expected output
+print(repr('3801      123\n-    2    +  49\n------    -----'))
+
