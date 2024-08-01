@@ -31,13 +31,13 @@ def arithmetic_arranger(problems, show_answers = False):
                     elif val == 2:
                         num2+=char
             if (len(num1) > 4 | len(num2) > 4):
-                ValueError("Error: Numbers cannot be more than four digits.")
+                raise ValueError("Error: Numbers cannot be more than four digits.")
             elif not num1.isnumeric():
-                ValueError("Error: Numbers must only contain digits.")
+                raise ValueError("Error: Numbers must only contain digits.")
             elif not num2.isnumeric():
-                ValueError("Error: Numbers must only contain digits.")
+                raise ValueError("Error: Numbers must only contain digits.")
             elif not (operator == '+' or operator == '-'):
-                ValueError("Error: Operator must be '+' or '-'.")
+                raise ValueError("Error: Operator must be '+' or '-'.")
             maxdifference = abs(len(num1)-len(num2))
             if operator == '+':
                 solution = int(num1) + int(num2)
@@ -86,4 +86,4 @@ def arithmetic_arranger(problems, show_answers = False):
         return solved
 
 
-print(arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True))
+print(arithmetic_arranger(["32 - 698", "3801 - 2", "45 + 43", "123 + 49"], True))
