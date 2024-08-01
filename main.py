@@ -79,14 +79,14 @@ def arithmetic_arranger(problems, show_answers = False):
     third = ''.join(thirdline)
     fourth =  ''.join(fourthline)
     if show_answers:
-        solved = first + '\n' +  second + '\n' +  third.rstrip() + '\n' + fourth.rstrip()
+        solved = first.rstrip() + '\n' +  second.rstrip() + '\n' +  third.rstrip() + '\n' + fourth.rstrip()
         return solved
     else:
-        solved = first + '\n' +  second + '\n' +  third.rstrip()
+        solved = first.rstrip() + '\n' +  second.rstrip() + '\n' +  third.rstrip()
         return solved
 
-print(repr(f'\n{arithmetic_arranger(["3801 - 2", "123 + 49"])}'))
+print(repr(arithmetic_arranger(["3801 - 2", "123 + 49"])))
 
 # expected output
-print(repr('3801      123\n-    2    +  49\n------    -----'))
+print(repr("  3801      123\n-    2    +  49\n------    -----"))
 
