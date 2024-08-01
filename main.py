@@ -7,19 +7,19 @@
 def arithmetic_arranger(problems, show_answers = False):
     #The limit of how many problem can be submitted as once will be 5
     solved = ''
-    solution = 0
-    solutionStr = ''
-    dashes = ''
     firstline = []
-    secondline = ['\n']
-    thirdline = ['\n']
-    fourthline = ['\n']
+    secondline = []
+    thirdline = []
+    fourthline = []
     if len(problems) < 5:
         for problem in problems:
             val = 0
             num1 = ''
             num2 = ''
             operator = ''
+            dashes = ''
+            solutionStr = ''
+            solution = 0
             for char in problem:
                 if char == ' ':
                     val+=1
@@ -55,24 +55,35 @@ def arithmetic_arranger(problems, show_answers = False):
             elif len(num2) > len(num1):
                 for _ in range(maxdifference):
                     num1 = ' ' + num1
-                for _ in range(len(num2) + 2 - len(solutionStr)):
+                for _ in range(len(num2) + 2):
                     dashes = '-' + dashes 
                 for _ in range(len(num2) + 2 - len(solutionStr)):
                     solutionStr = ' ' + solutionStr 
-            firstline.append('  ' + num1)
-            secondline.append(operator + ' ' + num2)
-            thirdline.append(dashes)
-            fourthline.append(solutionStr)
+            else:
+                for _ in range(maxdifference):
+                    num1 = ' ' + num1
+                for _ in range(len(num2) + 2):
+                    dashes = '-' + dashes 
+                for _ in range(len(num2) + 2 - len(solutionStr)):
+                    solutionStr = ' ' + solutionStr 
+            firstline.append('  ' + num1 + '    ')
+            secondline.append(operator + ' ' + num2 + '    ')
+            thirdline.append(dashes + '    ')
+            fourthline.append(solutionStr + '    ')
 
 
     else:
         ValueError("Error: Too many problems.")
+    first = ''.join(firstline)
+    second = ''.join(secondline)
+    third = ''.join(thirdline)
+    fourth =  ''.join(fourthline)
     if show_answers:
-        solved = ''.join(firstline) + ''.join(secondline) + ''.join(thirdline) + ''.join(fourthline)
+        solved = first + '\n' +  second + '\n' +  third + '\n' + fourth
         return solved
     else:
-        solved = ''.join(firstline) + ''.join(secondline) + ''.join(thirdline)
+        solved = first + '\n' +  second + '\n' +  third
         return solved
 
 
-print(arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]))
+print(arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True))
