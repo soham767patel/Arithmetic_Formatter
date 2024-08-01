@@ -7,7 +7,8 @@
 def arithmetic_arranger(problems, show_answers = False):
     #The limit of how many problem can be submitted as once will be 5
     solved = ''
-    solution
+    solution = 0
+    solutionStr = ''
     dashes = ''
     firstline = []
     secondline = ['\n']
@@ -40,33 +41,37 @@ def arithmetic_arranger(problems, show_answers = False):
             maxdifference = abs(len(num1)-len(num2))
             if operator == '+':
                 solution = int(num1) + int(num2)
+                solutionStr = str(solution)
             elif operator == '-':
                 solution = int(num1) - int(num2)
+                solutionStr = str(solution)
             if len(num1) > len(num2):
-                for _ in maxdifference:
+                for _ in range(maxdifference):
                     num2 = ' ' + num2
-                for _ in len(num1) + 2:
+                for _ in range(len(num1) + 2):
                     dashes = '-' + dashes 
-                for _ in len(num1) + 2 - len(solution):
-                    solution = ' ' + solution
+                for _ in range(len(num1) + 2 - len(solutionStr)):
+                    solutionStr = ' ' + solutionStr
             elif len(num2) > len(num1):
-                for _ in maxdifference:
+                for _ in range(maxdifference):
                     num1 = ' ' + num1
-                for _ in len(num2) + 2:
+                for _ in range(len(num2) + 2 - len(solutionStr)):
                     dashes = '-' + dashes 
+                for _ in range(len(num2) + 2 - len(solutionStr)):
+                    solutionStr = ' ' + solutionStr 
             firstline.append('  ' + num1)
             secondline.append(operator + ' ' + num2)
             thirdline.append(dashes)
-            fourthline.append(solution)
+            fourthline.append(solutionStr)
 
 
     else:
         ValueError("Error: Too many problems.")
     if show_answers:
-        solved = '    '.join(firstline) + '    '.join(secondline) + '    '.join(thirdline) + '    '.join(fourthline)
+        solved = ''.join(firstline) + ''.join(secondline) + ''.join(thirdline) + ''.join(fourthline)
         return solved
     else:
-        solved = '    '.join(firstline) + '    '.join(secondline) + '    '.join(thirdline)
+        solved = ''.join(firstline) + ''.join(secondline) + ''.join(thirdline)
         return solved
 
 
